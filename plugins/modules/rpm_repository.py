@@ -26,6 +26,12 @@ options:
       - Whether to automatically create publications for new repository versions
     type: bool
     version_added: "0.0.13"
+  pulp_labels:
+    description:
+      - Labels consisting of key, value pairs
+    type: dict
+    required: false
+    version_added: "0.0.16"
   remote:
     description:
       - An optional remote to use by default when syncing
@@ -86,6 +92,15 @@ EXAMPLES = r"""
     password: password
     name: new_repo
     state: absent
+
+- name: Add a label to a rpm repository
+  pulp.squeezer.rpm_repository:
+    pulp_url: https://pulp.example.org
+    username: admin
+    password: password
+    name: repo_name
+    pulp_labels:
+      key1: value1
 """
 
 RETURN = r"""
@@ -110,6 +125,7 @@ from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
 
 DESIRED_KEYS = {
     "autopublish",
+    "pulp_labels",
     "remote",
     "repo_config",
     "retain_package_versions",
@@ -123,6 +139,7 @@ def main():
             "name": {},
             "description": {},
             "autopublish": {"type": "bool"},
+            "pulp_labels": {"type": "dict"},
             "remote": {},
             "repo_config": {"type": "raw"},
             "retain_package_versions": {"type": "int"},

@@ -93,8 +93,8 @@ EXAMPLES = r"""
     pulp_url: https://pulp.example.org
     username: admin
     password: password
-    name: new_rpm_distribution
-    pulp_label:
+    name: rpm_distribution_name
+    pulp_labels:
       key1: value1
 """
 

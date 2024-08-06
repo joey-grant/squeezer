@@ -20,6 +20,12 @@ options:
       - immediate
       - on_demand
       - streamed
+  pulp_labels:
+    description:
+      - Labels consisting of key, value pairs
+    type: dict
+    required: false
+    version_added: "0.0.16"
 extends_documentation_fragment:
   - pulp.squeezer.pulp
   - pulp.squeezer.pulp.entity_state
@@ -55,6 +61,16 @@ EXAMPLES = r"""
     password: password
     name: new_rpm_remote
     state: absent
+
+- name: Add a label to an rpm remote
+  pulp.squeezer.rpm_remote:
+    pulp_url: https://pulp.example.org
+    username: admin
+    password: password
+    name: rpm_remote_name
+    pulp_labels:
+      key1: value1
+    state: present
 """
 
 RETURN = r"""
@@ -79,13 +95,20 @@ def main():
     with PulpRemoteAnsibleModule(
         argument_spec={
             "policy": {"choices": ["immediate", "on_demand", "streamed"]},
+            "pulp_labels": {"type": "dict"},
         },
         required_if=[("state", "present", ["name"]), ("state", "absent", ["name"])],
     ) as module:
         natural_key = {"name": module.params["name"]}
         desired_attributes = {
             key: module.params[key]
-            for key in ["url", "download_concurrency", "policy", "tls_validation"]
+            for key in [
+                "url",
+                "download_concurrency",
+                "policy",
+                "tls_validation",
+                "pulp_labels",
+            ]
             if module.params[key] is not None
         }
 

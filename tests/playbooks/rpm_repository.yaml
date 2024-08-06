@@ -217,6 +217,21 @@
           - result.repository.description == "repository created via ansible"
           - result.repository.autopublish == true
 
+    - name: Modify pulp_labels on repository
+      pulp.squeezer.rpm_repository:
+        name: test_rpm_repository
+        pulp_labels:
+          key1: value1
+          key2: value2
+        state: present
+      register: result
+    - name: Verify modify pulp_labels on repository
+      assert:
+        that:
+          - result.changed == true
+          - result.repository.pulp_labels.key1 == "value1"
+          - result.repository.pulp_labels.key2 == "value2"
+
     - name: List repositories
       pulp.squeezer.rpm_repository: {}
       register: result
@@ -238,6 +253,8 @@
           - result.repository.description == "repository created via ansible"
           - result.repository.autopublish == true
           - result.repository.remote == remote_result.remote.pulp_href
+          - result.repository.pulp_labels.key1 == "value1"
+          - result.repository.pulp_labels.key2 == "value2"
 
     - name: Remove description from repository
       pulp.squeezer.rpm_repository:

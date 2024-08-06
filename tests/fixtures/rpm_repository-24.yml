@@ -13,7 +13,7 @@ interactions:
       User-Agent:
       - Python-urllib/3.10
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/remotes/rpm/rpm/?limit=1&name=test_rpm_remote
+    uri: http://pulp.example.org/pulp/api/v3/repositories/rpm/rpm/?limit=1&name=test_rpm_repository
   response:
     body:
       string: '{"count":0,"next":null,"previous":null,"results":[]}'
@@ -29,11 +29,11 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - aaa9e410ae8c44e6a826350c4d5b6485
+      - 606650eae4894e13a110f2ef23bd1e93
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Tue, 06 Aug 2024 11:54:07 GMT
+      - Tue, 06 Aug 2024 11:46:27 GMT
       Referrer-Policy:
       - same-origin
       Server:

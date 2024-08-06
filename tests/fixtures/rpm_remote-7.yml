@@ -9,14 +9,14 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - pulp3-sandbox-debian-testing
+      - localhost:8080
       User-Agent:
-      - Python-urllib/3.9
+      - Python-urllib/3.10
     method: GET
-    uri: https://pulp.example.org/pulp/api/v3/remotes/rpm/rpm/?limit=1&name=test_rpm_remote
+    uri: http://pulp.example.org/pulp/api/v3/remotes/rpm/rpm/?limit=1&name=test_rpm_remote
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/rpm/rpm/b532cbda-064e-4e61-964c-26e2ba405cc5/","pulp_created":"2021-07-25T09:02:59.691097Z","name":"test_rpm_remote","url":"http://mirror.example.org/pub/centos/8/BaseOS/x86_64/os/","ca_cert":"abcd","client_cert":"efgh","tls_validation":false,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"pulp_last_updated":"2021-07-25T09:03:03.902166Z","download_concurrency":null,"max_retries":null,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"sles_auth_token":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/rpm/rpm/01912789-ffb1-7cb3-8c91-d31e4a62485a/","pulp_created":"2024-08-06T11:54:01.010555Z","pulp_last_updated":"2024-08-06T11:54:04.540936Z","name":"test_rpm_remote","url":"http://mirror.example.org/pub/centos/8/BaseOS/x86_64/os/","ca_cert":"abcd","client_cert":"efgh","tls_validation":false,"proxy_url":"http://proxy.int:3128","pulp_labels":{"key1":"value1","key2":"value2"},"download_concurrency":null,"max_retries":null,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"hidden_fields":[{"name":"client_key","is_set":true},{"name":"proxy_username","is_set":true},{"name":"proxy_password","is_set":true},{"name":"username","is_set":true},{"name":"password","is_set":true}],"sles_auth_token":null}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -25,21 +25,25 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '654'
+      - '887'
       Content-Type:
       - application/json
       Correlation-ID:
-      - fe3df2330c6f4d60be8473fde478bc89
+      - 1be358e395c944098eeff07c5272b9e7
+      Cross-Origin-Opener-Policy:
+      - same-origin
       Date:
-      - Sun, 25 Jul 2021 09:03:04 GMT
+      - Tue, 06 Aug 2024 11:54:05 GMT
+      Referrer-Policy:
+      - same-origin
       Server:
-      - nginx/1.18.0
-      Strict-Transport-Security:
-      - max-age=15768000
+      - nginx/1.22.1
       Vary:
-      - Accept, Cookie
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
       X-Frame-Options:
-      - SAMEORIGIN
+      - DENY
     status:
       code: 200
       message: OK
